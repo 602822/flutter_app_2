@@ -49,11 +49,22 @@ class _MainScreenState extends State<MainScreen> {
       body: <Widget>[
         Container(
           alignment: Alignment.center,
-          child: const Text('Page 1'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              const Text('Page 1'),
+              ElevatedButton(onPressed: () {}, child: const Text("Save")),
+            ],
+          ),
         ),
         Container(
           alignment: Alignment.center,
-          child: const Text('Page 2'),
+          child: const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Page 2'),
+            ],
+          ),
         ),
       ][currentIndex],
     );
