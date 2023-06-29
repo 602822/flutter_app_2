@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +26,18 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
+  Duration selectedDuration = const Duration();
+
+  String formatDuration(Duration duration) {
+    String hours = duration.inHours < 10
+        ? duration.inHours.toString()
+        : duration.inHours.toString().padLeft(2, '0');
+    String minutes = duration.inMinutes.remainder(60) < 10
+        ? duration.inMinutes.remainder(60).toString()
+        : duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    return "$hours hours : $minutes minutes";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +65,17 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              const Text('Page 1'),
+              Text(formatDuration(selectedDuration)),
+              SingleChildScrollView(
+                child: CupertinoTimerPicker(
+                  onTimerDurationChanged: (Duration duration) {
+                    setState(() {
+                      selectedDuration = duration;
+                    });
+                  },
+                  mode: CupertinoTimerPickerMode.hm,
+                ),
+              ),
               ElevatedButton(onPressed: () {}, child: const Text("Save")),
             ],
           ),
