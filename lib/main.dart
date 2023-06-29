@@ -29,12 +29,9 @@ class _MainScreenState extends State<MainScreen> {
   Duration selectedDuration = const Duration();
 
   String formatDuration(Duration duration) {
-    String hours = duration.inHours < 10
-        ? duration.inHours.toString()
-        : duration.inHours.toString().padLeft(2, '0');
-    String minutes = duration.inMinutes.remainder(60) < 10
-        ? duration.inMinutes.remainder(60).toString()
-        : duration.inMinutes.remainder(60).toString().padLeft(2, '0');
+    String hours = duration.inHours.toString();
+    String minutes = duration.inMinutes.remainder(60).toString();
+
     return "$hours hours : $minutes minutes";
   }
 
